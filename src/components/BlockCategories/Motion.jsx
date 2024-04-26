@@ -7,7 +7,7 @@ export const Motion = `
     <block type="add_ingredient"></block>
     <block type="mix_ingredient"></block>
     <block type="turn_left"></block>
-    <block type="setxto"></block>
+    <block type="get_Ingredient"></block>
     
   </category>
 `;
@@ -54,7 +54,7 @@ Blockly.Blocks["mix_ingredient"] = {
   },
 };
 
-Blockly.Blocks["setxto"] = {
+Blockly.Blocks["get_Ingredient"] = {
   init: function () {
     this.appendDummyInput().appendField("get Ingredient");
     this.setPreviousStatement(true, null);
@@ -254,6 +254,12 @@ javascriptGenerator["mix_ingredient"] = function (block) {
   return code;
 };
 
+javascriptGenerator["get_Ingredient"] = function (block) {
+ 
+  const code = `store.dispatch(getIngredient())`;
+  console.log(code);
+  return code;
+};
 // JavaScript code generator for 'turn_left' block
 javascriptGenerator["turn_left"] = function (block) {
   const degrees = block.getFieldValue("DEGREES");
@@ -374,13 +380,7 @@ javascriptGenerator["glidesecstomenu"] = function (block) {
 };
 
 // JavaScript code generator for 'setxto' block
-javascriptGenerator["setxto"] = function (block) {
-  const value = block.getFieldValue("VALUE");
-  const code = `store.dispatch(setX(${value}));
-`;
-  console.log(code);
-  return code;
-};
+
 
 // JavaScript code generator for 'setyto' block
 javascriptGenerator["setyto"] = function (block) {

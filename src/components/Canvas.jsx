@@ -158,8 +158,8 @@ const Canvas = () => {
         overflow: "hidden",
       }}
     >
-      <div id="cakeDiv"></div>
       <h1 style={{ textAlign: "center", fontSize: "14px" }}>Canvas</h1>
+      <div id="cakeDiv"></div>
       <Draggable
         bounds="parent"
         position={position}
@@ -236,17 +236,16 @@ const Canvas = () => {
           width: "100%",
         }}
       >
-      <FlagButton onClick={() => {}} />
-          <FlagButton onClick={() => {}} />
-          <StopButton onClick={() => {}} />
-          <UndoButton onClick={() => {}} />
-          <RedoButton onClick={() => {}} />
-          <Pencil onClick={handlePencilClick} isActive={isPencilActive} />
-         
-          <ZoomIn onClick={() => {}} />
-          <ZoomOut onClick={() => {}} />
-          <FullScreen onClick={() => {}} />
-        
+        <FlagButton onClick={() => {}} />
+        <FlagButton onClick={() => {}} />
+        <StopButton onClick={() => {}} />
+        <UndoButton onClick={() => {}} />
+        <RedoButton onClick={() => {}} />
+        <Pencil onClick={handlePencilClick} isActive={isPencilActive} />
+
+        <ZoomIn onClick={() => {}} />
+        <ZoomOut onClick={() => {}} />
+        <FullScreen onClick={() => {}} />
       </div>
     </Card>
   );
