@@ -12,8 +12,6 @@ const initialState = {
   mixedIngredient: "",
 };
 
-
-
 // Create the slice
 export const motionSlice = createSlice({
   name: "Motion",
@@ -40,7 +38,8 @@ export const motionSlice = createSlice({
       reducer: (state, action) => {
         const canvasElement = document.getElementById("cakeDiv");
         if (canvasElement) {
-          canvasElement.innerHTML = "<h1>Mix Ingredient</h1>";
+          canvasElement.innerHTML =
+            '<img src="https://c.ndtvimg.com/gws/5674/assets/4.jpeg?1651561595" alt="Egg" width="2000" height="1500">';
           console.log("Mixing ingredient...");
           // Additional logic related to mixing ingredients can be added here if needed
         } else {
@@ -208,7 +207,7 @@ export const {
   changeY,
   ifOnEdgeBounce,
   glideSecsXY,
-  done
+  done,
 } = motionSlice.actions;
 
 // export default motionSlice.reducer;

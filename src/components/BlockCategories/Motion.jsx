@@ -3,7 +3,7 @@ import { javascriptGenerator } from "blockly/javascript";
 import { pythonGenerator } from "blockly/python";
 
 export const Motion = `
-  <category name="Motion" colour="#5c81a6">
+  <category name="Cake Blocks" colour="#5c81a6">
     <block type="add_ingredient"></block>
     <block type="mix_ingredient"></block>
     <block type="turn_left"></block>
@@ -14,17 +14,17 @@ export const Motion = `
 
 // Block Injection
 
-    // <block type="setyto"></block>
-    // <block type="if_on_edge_bounce"></block>
-    // <block type="set_rotation_style"></block>
-    // <block type="point_in_direction"></block>
-    // <block type="point_toward_menu"></block>
-    // <block type="go_to_menu"></block>
-    // <block type="go_to_xy"></block>
-    // <block type="glidesecstoxy"></block>
-    // <block type="glidesecstomenu"></block>
-    // <block type="changexby"></block>
-    // <block type="changeyby"></block>
+// <block type="setyto"></block>
+// <block type="if_on_edge_bounce"></block>
+// <block type="set_rotation_style"></block>
+// <block type="point_in_direction"></block>
+// <block type="point_toward_menu"></block>
+// <block type="go_to_menu"></block>
+// <block type="go_to_xy"></block>
+// <block type="glidesecstoxy"></block>
+// <block type="glidesecstomenu"></block>
+// <block type="changexby"></block>
+// <block type="changeyby"></block>
 Blockly.Blocks["add_ingredient"] = {
   init: function () {
     this.appendDummyInput()
@@ -64,10 +64,10 @@ Blockly.Blocks["setxto"] = {
 };
 Blockly.Blocks["turn_left"] = {
   init: function () {
-     this.appendDummyInput().appendField("Bake Cake");
-     this.setPreviousStatement(true, null);
-     this.setNextStatement(true, null);
-     this.setColour(230);
+    this.appendDummyInput().appendField("Bake Cake");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
   },
 };
 
@@ -197,8 +197,6 @@ Blockly.Blocks["changeyby"] = {
   },
 };
 
-
-
 Blockly.Blocks["setyto"] = {
   init: function () {
     this.appendDummyInput()
@@ -273,14 +271,14 @@ javascriptGenerator["point_in_direction"] = function (block) {
 };
 
 // JavaScript code generator for 'point_toward_menu' block
-// Initialize a flag 
+// Initialize a flag
 let shouldPointTowardsMouse = false;
 
 // Function to rotate the sprite towards the mouse pointer
 function pointImageTowardsMousePointer() {
   // Check if pointing towards the mouse is enabled
   if (shouldPointTowardsMouse) {
-    var sprite = document.getElementById('sprite');
+    var sprite = document.getElementById("sprite");
 
     // current mouse coordinates
     var mouseX = event.clientX;
@@ -294,11 +292,10 @@ function pointImageTowardsMousePointer() {
     var deltaX = mouseX - spriteCenterX;
     var deltaY = mouseY - spriteCenterY;
 
-  
     var angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
 
     // Apply the rotation transformation to the sprite
-    sprite.style.transform = 'rotate(' + angle + 'deg)';
+    sprite.style.transform = "rotate(" + angle + "deg)";
 
     // Disable pointing towards the mouse until triggered again
     shouldPointTowardsMouse = false;
@@ -306,22 +303,19 @@ function pointImageTowardsMousePointer() {
 }
 
 // mousemove event listener to continuously update the sprite rotation
-document.addEventListener('mousemove', function (event) {
+document.addEventListener("mousemove", function (event) {
   pointImageTowardsMousePointer();
 });
 
 // Function to enable pointing towards the mouse and trigger rotation
-javascriptGenerator['point_toward_menu'] = function (block) {
-
+javascriptGenerator["point_toward_menu"] = function (block) {
   shouldPointTowardsMouse = true;
 
   // Trigger the rotation immediately
   pointImageTowardsMousePointer();
 
-
-  return '';
+  return "";
 };
-
 
 // JavaScript code generator for 'go_to_menu' block
 javascriptGenerator["go_to_menu"] = function (block) {
