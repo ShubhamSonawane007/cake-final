@@ -24,9 +24,18 @@ export const motionSlice = createSlice({
         const selectedIngredient = action.payload.ingredient;
         state.ingredients.push(selectedIngredient); // Push new ingredient to the array
         console.log("Ingredient added:", selectedIngredient);
+
+        // Update the cakeDiv to display the new ingredient
+        const ingredientsHTML = state.ingredients
+          .map((ingredient) => `<li>${ingredient}</li>`)
+          .join("");
+        document.getElementById(
+          "cakeDiv"
+        ).innerHTML = `<h1>Ingredients:</h1><ul>${ingredientsHTML}</ul>`;
       },
       prepare: (ingredient) => ({ payload: { ingredient } }),
     },
+
     mixIngredient: {
       reducer: (state, action) => {
         const canvasElement = document.getElementById("cakeDiv");
