@@ -14,7 +14,7 @@ const Home = () => {
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
         <BlocklyComponent />
-        <Canvas />
+        <Canvas  />
         <SidePanel />
       </div>
       <AnchorMenu />

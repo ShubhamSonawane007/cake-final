@@ -4,58 +4,70 @@ import { pythonGenerator } from "blockly/python";
 
 export const Motion = `
   <category name="Motion" colour="#5c81a6">
-    <block type="move_steps"></block>
-    <block type="turn_right"></block>
+    <block type="add_ingredient"></block>
+    <block type="mix_ingredient"></block>
     <block type="turn_left"></block>
-    <block type="point_in_direction"></block>
-    <block type="point_toward_menu"></block>
-    <block type="go_to_menu"></block>
-    <block type="go_to_xy"></block>
-    <block type="glidesecstoxy"></block>
-    <block type="glidesecstomenu"></block>
-    <block type="changexby"></block>
-    <block type="changeyby"></block>
     <block type="setxto"></block>
-    <block type="setyto"></block>
-    <block type="if_on_edge_bounce"></block>
-    <block type="set_rotation_style"></block>
+    
   </category>
 `;
 
 // Block Injection
-Blockly.Blocks["move_steps"] = {
+
+    // <block type="setyto"></block>
+    // <block type="if_on_edge_bounce"></block>
+    // <block type="set_rotation_style"></block>
+    // <block type="point_in_direction"></block>
+    // <block type="point_toward_menu"></block>
+    // <block type="go_to_menu"></block>
+    // <block type="go_to_xy"></block>
+    // <block type="glidesecstoxy"></block>
+    // <block type="glidesecstomenu"></block>
+    // <block type="changexby"></block>
+    // <block type="changeyby"></block>
+Blockly.Blocks["add_ingredient"] = {
   init: function () {
     this.appendDummyInput()
-      .appendField("Move")
-      .appendField(new Blockly.FieldNumber(10), "STEPS")
-      .appendField("steps");
+      .appendField("Add Ingredient:")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["Flour", "flour"],
+          ["Sugar", "sugar"],
+          ["Egg", "egg"],
+          ["Butter", "butter"],
+          // Add more ingredients as needed
+        ]),
+        "INGREDIENT"
+      );
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
   },
 };
 
-Blockly.Blocks["turn_right"] = {
+Blockly.Blocks["mix_ingredient"] = {
   init: function () {
-    this.appendDummyInput()
-      .appendField("Turn Right")
-      .appendField(new Blockly.FieldNumber(90), "DEGREES")
-      .appendField("degrees");
+    this.appendDummyInput().appendField("Mix Ingredient");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
   },
 };
 
+Blockly.Blocks["setxto"] = {
+  init: function () {
+    this.appendDummyInput().appendField("get Ingredient");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+  },
+};
 Blockly.Blocks["turn_left"] = {
   init: function () {
-    this.appendDummyInput()
-      .appendField("Turn Left")
-      .appendField(new Blockly.FieldNumber(90), "DEGREES")
-      .appendField("degrees");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
+     this.appendDummyInput().appendField("Bake Cake");
+     this.setPreviousStatement(true, null);
+     this.setNextStatement(true, null);
+     this.setColour(230);
   },
 };
 
@@ -185,16 +197,7 @@ Blockly.Blocks["changeyby"] = {
   },
 };
 
-Blockly.Blocks["setxto"] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Set X to")
-      .appendField(new Blockly.FieldNumber(10), "VALUE");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
-  },
-};
+
 
 Blockly.Blocks["setyto"] = {
   init: function () {
@@ -237,25 +240,17 @@ Blockly.Blocks["set_rotation_style"] = {
 //Block functions
 // JavaScript code generator for 'move_steps' block
 
-javascriptGenerator["move_steps"] = function (block) {
-  const steps = block.getFieldValue("STEPS");
-  //   const code = `
-  //   store.dispatch(moveSteps(${steps}, 0));
-  // }
-
-  // `;
-  const code = `store.dispatch(moveSteps(${steps}, 0));
-`;
-  console.log(code);
+javascriptGenerator["add_ingredient"] = function (block) {
+  const ingredient = block.getFieldValue("INGREDIENT"); // Retrieve the selected ingredient
+  const code = `store.dispatch(addIngredient("${ingredient}"));`; // Dispatch action to add the selected ingredient
+  console.log(code); // Log the generated code for debugging
   return code;
 };
 
 // JavaScript code generator for 'turn_right' block
-javascriptGenerator["turn_right"] = function (block) {
-  const degrees = block.getFieldValue("DEGREES");
-  const code = `store.dispatch(turnRight(${degrees}));
-`;
-  console.log(code);
+javascriptGenerator["mix_ingredient"] = function (block) {
+  const code = `store.dispatch(mixIngredient());`; // Dispatch action to mix ingredients
+  console.log(code); // Log the generated code for debugging
   return code;
 };
 

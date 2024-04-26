@@ -4,13 +4,13 @@ import "blockly/blocks";
 import { javascriptGenerator } from "blockly/javascript";
 import { store } from "../store/store.js";
 import {
-  moveSteps,
+  addIngredient,
   setX,
   setY,
   goTo,
   goToXY,
   moveSpriteToMousePointer,
-  turnRight,
+  mixIngredient,
   turnLeft,
   pointInDirection,
   rotateSprite,
