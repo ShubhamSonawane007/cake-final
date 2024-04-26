@@ -49,7 +49,7 @@ export const motionSlice = createSlice({
       prepare: () => ({}), // No need to pass any parameters for mixing ingredients
     },
 
-    setX: {
+    getIngredient: {
       reducer: (state, action) => {
         // Retrieve all stored ingredients from the state
         const storedIngredients = state.ingredients;
@@ -62,9 +62,16 @@ export const motionSlice = createSlice({
           .join("");
         document.getElementById(
           "cakeDiv"
-        ).innerHTML = `<h1>All Stored Ingredients:</h1><ul>${ingredientsHTML}</ul>`;
+        ).innerHTML = `<h1>All Ingredients:</h1><ul>${ingredientsHTML}</ul>`;
       },
       prepare: () => ({}), // No need to pass any parameters for setting X
+    },
+
+    turnLeft: {
+      reducer: (state, action) => {
+        document.getElementById("cakeDiv").innerHTML = "<h1>Cake Baked</h1>";
+      },
+      prepare: (angle) => ({ payload: { angle } }),
     },
     setY: {
       reducer: (state, action) => {
@@ -116,12 +123,6 @@ export const motionSlice = createSlice({
       prepare: (x, y) => ({ payload: { x, y } }),
     },
 
-    turnLeft: {
-      reducer: (state, action) => {
-        document.getElementById("cakeDiv").innerHTML = "<h1>Cake Baked</h1>";
-      },
-      prepare: (angle) => ({ payload: { angle } }),
-    },
     pointInDirection: {
       reducer: (state, action) => {
         if (action.payload.angle == -1) {
@@ -194,7 +195,7 @@ export const motionSlice = createSlice({
 
 export const {
   addIngredient,
-  setX,
+  getIngredient,
   setY,
   goTo,
   goToXY,

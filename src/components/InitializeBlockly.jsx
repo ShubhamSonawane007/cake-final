@@ -5,7 +5,7 @@ import { javascriptGenerator } from "blockly/javascript";
 import { store } from "../store/store.js";
 import {
   addIngredient,
-  setX,
+  getIngredient,
   setY,
   goTo,
   goToXY,
