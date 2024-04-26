@@ -55,8 +55,15 @@ export const motionSlice = createSlice({
         // Retrieve all stored ingredients from the state
         const storedIngredients = state.ingredients;
         // Print all stored ingredients
-        console.log("All stored ingredients:", storedIngredients);
-        // Additional logic related to setting the X position can be added here if needed
+        console.log("All ingredients:", storedIngredients);
+
+        // Update the cakeDiv to display all stored ingredients
+        const ingredientsHTML = storedIngredients
+          .map((ingredient) => `<li>${ingredient}</li>`)
+          .join("");
+        document.getElementById(
+          "cakeDiv"
+        ).innerHTML = `<h1>All Stored Ingredients:</h1><ul>${ingredientsHTML}</ul>`;
       },
       prepare: () => ({}), // No need to pass any parameters for setting X
     },
