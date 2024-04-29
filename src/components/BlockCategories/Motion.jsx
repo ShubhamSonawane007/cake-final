@@ -45,6 +45,26 @@ Blockly.Blocks["add_ingredient"] = {
   },
 };
 
+Blockly.Blocks["display_ingredient"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Add display Ingredient:")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["Flour", "flour"],
+          ["Sugar", "sugar"],
+          ["Egg", "egg"],
+          ["Butter", "butter"],
+          // Add more ingredients as needed
+        ]),
+        "INGREDIENT"
+      );
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+  },
+};
+
 Blockly.Blocks["mix_ingredient"] = {
   init: function () {
     this.appendDummyInput().appendField("Mix Ingredient");
@@ -241,6 +261,14 @@ Blockly.Blocks["set_rotation_style"] = {
 javascriptGenerator["add_ingredient"] = function (block) {
   const ingredient = block.getFieldValue("INGREDIENT"); // Retrieve the selected ingredient
   const code = `store.dispatch(addIngredient("${ingredient}"));`; // Dispatch action to add the selected ingredient
+  console.log(code); // Log the generated code for debugging
+  return code;
+};
+
+
+javascriptGenerator["display_ingredient"] = function (block) {
+  const ingredient = block.getFieldValue("INGREDIENT"); // Retrieve the selected ingredient
+  const code = `store.dispatch(displayIngredient("${ingredient}"));`; // Dispatch action to add the selected ingredient
   console.log(code); // Log the generated code for debugging
   return code;
 };

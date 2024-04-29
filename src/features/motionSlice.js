@@ -23,13 +23,68 @@ export const motionSlice = createSlice({
         state.ingredients.push(selectedIngredient); // Push new ingredient to the array
         console.log("Ingredient added:", selectedIngredient);
 
-        // Update the cakeDiv to display the new ingredient
-        const ingredientsHTML = state.ingredients
-          .map((ingredient) => `<li>${ingredient}</li>`)
-          .join("");
-        document.getElementById(
-          "cakeDiv"
-        ).innerHTML = `<h1>Ingredients:</h1><ul>${ingredientsHTML}</ul>`;
+      //   // Update the cakeDiv to display the new ingredient
+      //   const ingredientsHTML = state.ingredients
+      //     .map((ingredient) => `<li>${ingredient}</li>`)
+      //     .join("");
+      //   document.getElementById(
+      //     "cakeDiv"
+      //   ).innerHTML = `<h1>Ingredients:</h1><ul>${ingredientsHTML}</ul>`;
+      // },
+      const canvasElement = document.getElementById("cakeDiv");
+      if (canvasElement) {
+        if(selectedIngredient==="Sugar" || selectedIngredient==="sugar"){
+          state.images='https://www.hsph.harvard.edu/nutritionsource/wp-content/uploads/sites/30/2022/04/sugar-g963832288_1280.jpg'
+        canvasElement.innerHTML =
+          '<img src="https://img.freepik.com/premium-vector/sugar-burlap-sack-with-wooden-sign-banner_1308-159006.jpg?w=826" alt="Egg" width="2000px" height="1500px" style="width:40%;height:250px;margin-left:150px;margin-top:100px">';
+        console.log("sugar added");}
+        else if(selectedIngredient==="Flour" || selectedIngredient==="flour"){
+          canvasElement.innerHTML =
+            '<img src="https://img.freepik.com/premium-vector/canvas-bag-with-white-flour-scoop-ears_23965-525.jpg" alt="Egg" width="2000px" height="1500px" style="width:50%;height:300px;margin-left:130px;margin-top:70px">';
+          console.log("flour added");}
+
+          else if(selectedIngredient==="Egg" || selectedIngredient==="egg"){
+            canvasElement.innerHTML =
+              '<img src="https://img.freepik.com/premium-photo/colorful-vector-illustration-orange-eggs-white-background_899449-59979.jpg?w=740" alt="Egg" width="2000px" height="1500px" style="width:50%;height:350px;margin-left:130px;margin-top: 30px;">';
+            console.log("egg added");}
+
+            else if(selectedIngredient==="Butter" || selectedIngredient==="butter"){
+              canvasElement.innerHTML =
+                '<img src="https://img.freepik.com/premium-vector/butter-white-plate-cartoon-illustration_407974-1945.jpg?w=740" alt="Egg" width="2000px" height="1500px" style="width:50%;height:400px;margin-left:130px;margin-top:30px">';
+              console.log("butter added");}
+          
+        // Additional logic related to mixing ingredients can be added here if needed
+      } else {
+        console.error("Canvas element not found.");
+      }
+    },
+      prepare: (ingredient) => ({ payload: { ingredient } }),
+    },
+    // display ingredients
+
+    displayIngredient: 
+    {
+      reducer: (state, action) => {
+        const selectedIngredient = action.payload.ingredient;
+        state.ingredients.push(selectedIngredient); // Push new ingredient to the array
+        console.log("Ingredient added:", selectedIngredient);
+
+        const canvasElement = document.getElementById("cakeDiv");
+        if (canvasElement) {
+          if(selectedIngredient==="Sugar" || selectedIngredient==="sugar"){
+            state.images='https://www.hsph.harvard.edu/nutritionsource/wp-content/uploads/sites/30/2022/04/sugar-g963832288_1280.jpg'
+          canvasElement.innerHTML =
+            '<img src="https://www.hsph.harvard.edu/nutritionsource/wp-content/uploads/sites/30/2022/04/sugar-g963832288_1280.jpg" alt="Egg" width="2000px" height="1500px" style="width:100%;height:100%">';
+          console.log("sugar added");}
+          else if(selectedIngredient==="Flour" || selectedIngredient==="flour"){
+            canvasElement.innerHTML =
+              '<img src="https://5.imimg.com/data5/SELLER/Default/2021/11/VO/WA/GK/137136644/white-wheat-flour.jpg" alt="Egg" width="2000px" height="1500px" style="width:100%;height:100%">';
+            console.log("flour added");}
+            
+          // Additional logic related to mixing ingredients can be added here if needed
+        } else {
+          console.error("Canvas element not found.");
+        }
       },
       prepare: (ingredient) => ({ payload: { ingredient } }),
     },
@@ -39,7 +94,7 @@ export const motionSlice = createSlice({
         const canvasElement = document.getElementById("cakeDiv");
         if (canvasElement) {
           canvasElement.innerHTML =
-            '<img src="https://c.ndtvimg.com/gws/5674/assets/4.jpeg?1651561595" alt="Egg" width="2000" height="1500">';
+            '<img src="https://img.freepik.com/premium-vector/illustration-flour_498740-12345.jpg?w=740" alt="Egg" width="2000px" height="1500px" style="width:65%;height:100%;margin-left:100px;margin-top:80px">';
           console.log("Mixing ingredient...");
           // Additional logic related to mixing ingredients can be added here if needed
         } else {
@@ -69,7 +124,15 @@ export const motionSlice = createSlice({
 
     turnLeft: {
       reducer: (state, action) => {
-        document.getElementById("cakeDiv").innerHTML = "<h1>Cake Baked</h1>";
+        const canvasElement = document.getElementById("cakeDiv");
+        if (canvasElement) {
+          canvasElement.innerHTML =
+            '<img src="https://img.freepik.com/premium-vector/sliced-cake-vector-art-displayed-vector-cake-masterpieces-displayed_772298-35981.jpg?w=740" alt="Egg" width="2000px" height="1500px" style="width:50%;height:100%;margin-left:130px;margin-top:120px">';
+          console.log("Mixing ingredient...");
+          // Additional logic related to mixing ingredients can be added here if needed
+        } else {
+          console.error("Canvas element not found.");
+        }
       },
       prepare: (angle) => ({ payload: { angle } }),
     },
@@ -195,6 +258,7 @@ export const motionSlice = createSlice({
 
 export const {
   addIngredient,
+  displayIngredient,
   getIngredient,
   setY,
   goTo,
