@@ -18,6 +18,9 @@ import {
   changeX,
   changeY,
   ifOnEdgeBounce,
+  // bakeCake,
+  // getMix,
+  // resetCake
 } from "../features/motionSlice";
 
 import { waitSeconds} from "../features/controlSlice";

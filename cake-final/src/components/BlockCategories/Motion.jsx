@@ -64,7 +64,7 @@ Blockly.Blocks["get_Ingredient"] = {
 };
 Blockly.Blocks["turn_left"] = {
   init: function () {
-    this.appendDummyInput().appendField("Bake Cake");
+    this.appendDummyInput().appendField("Bake Cake").appendField(new Blockly.FieldTextInput("180"), "DEGREES").appendField("°C");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("Blue");
