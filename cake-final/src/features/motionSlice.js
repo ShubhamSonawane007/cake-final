@@ -92,14 +92,16 @@ export const motionSlice = createSlice({
           </div>
         `;
         }else {
-          console.log(
-            `The ingredient '${ingredient}' is already in the mix.`
-          );
+          
+            document.getElementById("cakeDiv").innerHTML =
+              `<h2 style='margin-left:50px;margin-top:150px;margin-right:50px'>The ingredient '${selectedIngredient}' is already in the mix.</h2>`;
+         
+          
         }
       } else {
-        console.log(
-          "The cake has already been baked. You cannot add ingredients now."
-        );
+        document.getElementById("cakeDiv").innerHTML =
+              "<h2 style='margin-left:50px;margin-top:150px;margin-right:50px'>The cake has already been baked</h2><h2 style='margin-left:50px;margin-top:150px;margin-right:50px'>You cannot add ingredients now.</h2>";
+       
       }
       },
       prepare: (ingredient) => ({ payload: { ingredient } }),
@@ -108,6 +110,7 @@ export const motionSlice = createSlice({
     mixIngredient: {
       reducer: (state, action) => {
         if (state.ingredients.length > 0 && !state.baked) {
+          
         const canvasElement = document.getElementById("cakeDiv");
         if (!canvasElement) {
           console.error("Canvas element not found.");
@@ -120,13 +123,17 @@ export const motionSlice = createSlice({
         // Display GIF
         const gifHTML = `<img src="/mix.gif" style="width: 100%; height: auto; position: relative; z-index: 1;">`;
         canvasElement.innerHTML = gifHTML;
-
+        state.mixing = true;
         console.log("Mixing ingredient...");
+        
         // Additional logic related to mixing ingredients can be added here if needed
       }else if (state.baked) {
-        console.log("The cake has already been baked.");
+        document.getElementById("cakeDiv").innerHTML =
+              "<h2 style='margin-left:50px;margin-top:150px;margin-right:50px'>The cake has already been baked.</h2>"
+        
       } else {
-        console.log("There are no ingredients to mix.");
+        document.getElementById("cakeDiv").innerHTML =
+              "<h2 style='margin-left:100px;margin-top:150px;margin-right:50px'>Add ingredients to mix.</h2>";
       }
     },
       prepare: () => ({}), // No need to pass any parameters for mixing ingredients
@@ -169,12 +176,12 @@ export const motionSlice = createSlice({
             console.log("Temperature:", temp.degrees);
             // Simulate baking process
             if (temp.degrees > 180) {
-              console.log("The cake is burnt!"); // Log message if the cake is burnt
+              console.log("oops!! cake is overbaked"); // Log message if the cake is burnt
               document.getElementById("cakeDiv").innerHTML =
-                "<h2>The cake is burnt!</h2>"; // Display message in div
+                "<h2 style='margin-left:100px;margin-top:150px;margin-right:50px'>oops!! cake is overbaked</h2><h3 style='margin-left:100px;margin-right:50px'>set temperature less than 180°C</h3>"; // Display message in div
             } else {
               state.baked = true;
-              canvasElement.innerHTML = "<h1>Cake Baked</h1>";
+              canvasElement.innerHTML = "<h1>Cake Baking...</h1>";
   
               // Accumulate HTML content for all ingredients
               let ingredientsHTML = "";
@@ -250,21 +257,37 @@ export const motionSlice = createSlice({
       
                 // Append SVG to cakeDiv
                 //canvasElement.innerHTML += fireworksSVG;
-      
+
+                // mixing gif
+               
+                setTimeout(() => {
+                 
+                 
+                  const gifHTML = `<img src="/mix.gif" style="width: 100%; height: auto; position: relative; z-index: 1;">`;
+        canvasElement.innerHTML = gifHTML;
+                }, (state.ingredients.length + 1) * 1000); // Add 1 second extra for the "Cake Baked" message
+              
+          
+                // celebration gif
                 setTimeout(() => {
                   const imageHTML = `<img src="/birthday-bday.gif" style="width: 100%; height: auto; position: relative; z-index: 1;">`;
                   canvasElement.innerHTML = imageHTML;
-                }, (state.ingredients.length + 1) * 1000); // Add 1 second extra for the "Cake Baked" message
+                }, (state.ingredients.length + 1) * 2000); // Add 1 second extra for the "Cake Baked" message
               };
       
               displayFireworks();
+              // clearning canvas
+              setTimeout(() => {
+                
+                canvasElement.innerHTML = "";
+              }, (state.ingredients.length + 1) * 5000);
             }
           } else if (state.baked) {
             console.log("The cake has already been baked.");
           } else {
             console.log("There are no ingredients to bake.");
             document.getElementById("cakeDiv").innerHTML =
-              "<h2>There are no ingredients to bake.</h2>";
+              "<h2 style='margin-left:100px;margin-top:150px;margin-right:50px'>Add ingredients to bake the cake</h2>";
           }
         },
         prepare: (degrees, temp) => ({ payload: { degrees, temp } }),

@@ -29,6 +29,7 @@ import { useSelector } from "react-redux";
 const InitializeBlockly = (toolboxXml) => {
   const workspace = Blockly.inject("blocklyDiv", {
     toolbox: toolboxXml,
+   
     zoom: {
       controls: false, // Disable default controls
       wheel: true,
@@ -50,7 +51,10 @@ const InitializeBlockly = (toolboxXml) => {
       drag: true,
       wheel: true,
     },
-  });
+    
+    renderer:"zelos",
+    
+  },);
   async function onBlockClick(event) {
     // console.log('Event details:', event);
     if (event.type === Blockly.Events.CLICK) {

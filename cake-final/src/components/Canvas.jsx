@@ -1,14 +1,16 @@
 import React from "react";
-import { Card } from "@mui/material";
+import { Card ,Typography} from "@mui/material";
 
 const Canvas = () => {
   return (
+    <>
+    
     <Card
       class="highlighted"
       style={{
         position: "relative",
         width: "700px",
-        margin: "24px auto",
+        marginTop: "39px",
         height: "581px",
         overflow: "hidden",
       }}
@@ -38,6 +40,7 @@ const Canvas = () => {
         }}
       ></div>
     </Card>
+    </>
   );
 };
 

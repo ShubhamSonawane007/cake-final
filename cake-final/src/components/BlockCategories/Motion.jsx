@@ -3,8 +3,8 @@ import { javascriptGenerator } from "blockly/javascript";
 import { pythonGenerator } from "blockly/python";
 
 export const Motion = `
-  <category name="Cake Blocks" colour="green">
-    <block type="add_ingredient"></block>
+  <category name="Cake Blocks" categorystyle="logic_category" >
+    <block type="add_ingredient" ></block>
     <block type="mix_ingredient"></block>
     <block type="turn_left"></block>
     <block type="get_Ingredient"></block>
@@ -26,7 +26,9 @@ export const Motion = `
 // <block type="changexby"></block>
 // <block type="changeyby"></block>
 Blockly.Blocks["add_ingredient"] = {
+ 
   init: function () {
+    
     this.appendDummyInput()
       .appendField("Add Ingredient:")
       .appendField(
@@ -42,6 +44,9 @@ Blockly.Blocks["add_ingredient"] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("red");
+    this.setHighlighted(true);
+    this.height=1;
+    
   },
 };
 

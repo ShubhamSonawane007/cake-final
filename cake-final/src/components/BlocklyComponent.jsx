@@ -120,7 +120,7 @@ const BlocklyComponent = () => {
       Blockly.setLocale("en");
       // Construct the complete toolbox XML
       const toolboxXml = `
-        <xml id="toolbox" style="display: none">
+        <xml id="toolbox" style="display: none;width:10px">
          
           
           ${Motion}
@@ -254,7 +254,7 @@ const BlocklyComponent = () => {
     <div className="BlockyComp">
       <div className="highlghted-text">
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-      <h1 style={{ margin: "0 0 10px 0", fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'Comic Sans MS', color:"purple" }}>Cake Toolbox</h1><h1></h1>
+      <h1 style={{ margin: "0 0 0px 0", fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'Comic Sans MS', color:"purple" }}>Cake Toolbox</h1><h1></h1>
     <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'Comic Sans MS', color:"purple" }}>Bake Workspace</h1>
     </Typography>
 
